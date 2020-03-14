@@ -1,0 +1,18 @@
+server:
+  port: 6660
+
+  ## PostgreSQL
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Heroes
+    username: postgres
+    password: maximum ride
+
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+
