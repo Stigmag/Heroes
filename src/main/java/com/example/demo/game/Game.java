@@ -30,7 +30,7 @@ private GameState state;
         this.map = new MyMap();
         this.countOfDays = 0;
         this.user= new User();
-        this.mapFile= new File("C:\\Users\\Kate\\Documents\\Heroes_Spring-master\\mapFile");
+        this.mapFile= new File("C:\\Users\\Kate\\Desktop\\Heroes_game_server\\mapFile");
 
     }
 

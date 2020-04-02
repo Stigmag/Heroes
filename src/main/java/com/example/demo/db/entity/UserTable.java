@@ -15,14 +15,21 @@ import java.util.UUID;
 
 public class UserTable implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserId")
     private int userId;
 
 
+    @Column(name="userName")
+    private String name;
+
+    @Column(name="password")
+    private String password;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
     private GameTable game;
+
 
 
 
@@ -32,6 +39,8 @@ public class UserTable implements Serializable {
         this.userId=userId;
     }
 
+
+
     public GameTable getGame() {
         return game;
     }
@@ -40,8 +49,12 @@ public class UserTable implements Serializable {
         this.game = game;
     }
 
-    public UserTable() {
+    public UserTable(String name,String password) {
+        this.name= name;
+        this.password= password;
     }
+
+
 }
 
 

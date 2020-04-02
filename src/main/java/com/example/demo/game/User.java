@@ -27,6 +27,8 @@ public class User {
 
 
 
+
+
     public Army getArmy() {
         return army;
     }

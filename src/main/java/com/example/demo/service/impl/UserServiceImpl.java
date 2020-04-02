@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserTable save(User user) {
+    public UserTable save(UserTable user) {
 
-        return userRepository.saveAndFlush( new UserTable());
+        return userRepository.save(new UserTable(user.getName(),user.getPassword()));
     }
 
     @Override
@@ -34,12 +34,12 @@ public class UserServiceImpl implements UserService {
 
     }
 @Override
-    public Optional<UserTable> getById(int id) {
-        return userRepository.findById(id);
+    public Optional<UserTable> getByLogin(int name) {
+        return userRepository.findById(name);
     }
 
     @Override
     public List<UserTable> getAll() {
-        return userRepository.findAll();
+        return (List<UserTable>) userRepository.findAll();
     }
 }

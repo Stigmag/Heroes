@@ -11,16 +11,21 @@ import com.example.demo.db.entity.UserTable;
 import com.example.demo.game.Game;
 import com.example.demo.db.entity.GameTable;
 import com.example.demo.game.User;
+import com.example.demo.map.MyMap;
 import com.example.demo.service.GameService;
 import com.example.demo.service.MapService;
 import com.example.demo.service.UserService;
 
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/db")
@@ -45,7 +50,7 @@ public class DBController {
 
 
 
-    @PostMapping("/add-data")
+    @PostMapping("/save-game")
     public String addData(@RequestBody Game request) {
 
         gameTable = new GameTable(request.getMapFile());
@@ -56,14 +61,24 @@ public class DBController {
         return new DBResponse().text;
     }
 
-    @PostMapping("/add-user")
-    public String addUser(@RequestBody User request) {
+    @PostMapping("/init-user")
+    public String addUser(@RequestBody UserTable request) {
 
         user = userService.save(request);
 
 
         return new DBResponse().text;
     }
+
+    @GetMapping ("/load-saved-game/{savedGameID}")
+    public File loadGame( @PathVariable String savedGameID) throws Exception {
+
+        GameTable gameTable=this.gameService.getById(Integer.parseInt(savedGameID)).orElseThrow(() -> new ResourceNotFoundException());
+
+                File outputFile= new File("C:\\Users\\Kate\\Desktop\\Heroes_game_server\\data\\savedMap.txt");
+        Files.write(outputFile.toPath(),gameTable.getMapFile());
+            return outputFile ;
+        }
 
     @Data
     public static class DBResponse {

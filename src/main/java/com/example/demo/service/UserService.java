@@ -11,15 +11,14 @@ import java.util.UUID;
 
 public interface UserService {
 
-   UserTable save(User user);
+   UserTable save(UserTable user);
 
 
-   Optional<UserTable> getById(int id);
+   Optional<UserTable> getByLogin(int user);
 
     void delete(int id);
 
     List<UserTable> getAll();
-
 
 
 

@@ -7,11 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="demo" />
+        <module name="Heroes_Spring-master" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Heroes_Spring-master" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Heroes_Spring-master" options="-parameters" />
       <module name="demo" options="-parameters" />
     </option>
   </component>

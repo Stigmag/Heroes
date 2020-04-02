@@ -23,9 +23,11 @@ public class GameTable implements Serializable {
     @Column(name = "game_id")
     private int gameId;
 
+    public byte[] getMapFile() {
+        return mapFile;
+    }
 
-
-  @Column(name="map_file")
+    @Column(name="map_file")
     private byte[] mapFile;
 
     public void setUser(UserTable user) {
